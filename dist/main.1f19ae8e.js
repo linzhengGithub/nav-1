@@ -122,8 +122,10 @@ var $siteList = $(".siteList");
 var $lastLi = $siteList.find("li.last");
 var x = localStorage.getItem("x"); //尝试读取x，得到x
 
+console.log(x);
 var xObject = JSON.parse(x); //字符串重新变成对象
 
+console.log(xObject);
 var hasMap = xObject || [{
   logo: "A",
   url: "https://www.acfun.cn"
@@ -162,13 +164,14 @@ $(".addButton").on("click", function () {
     url: url
   });
   render();
-});
 
-window.onbeforeunload = function () {
-  var string = JSON.stringify(hasMap); //把hasMap变成字符串
+  window.onbeforeunload = function () {
+    var string = JSON.stringify(hasMap); //把hasMap变成字符串
 
-  localStorage.setItem("x", string); //设置一个x，把string存起来
-}; // $(document).on('keypress',(e) => {
+    console.log(string);
+    localStorage.setItem("x", string); //设置一个x，把string存起来
+  };
+}); // $(document).on('keypress',(e) => {
 //     const {key} = e     //等于 const key = e.key
 //     for(let i = 0;i<hasMap.length;i++){
 //         if(hasMap[i].logo.toLowerCase() === key){
@@ -204,7 +207,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50599" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53645" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

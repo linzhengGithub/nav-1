@@ -1,7 +1,9 @@
 const $siteList = $(".siteList");
 const $lastLi = $siteList.find("li.last");
 const x = localStorage.getItem("x"); //尝试读取x，得到x
+console.log(x)
 const xObject = JSON.parse(x); //字符串重新变成对象
+console.log(xObject)
 const hasMap = xObject || [{ logo: "A", url: "https://www.acfun.cn" }];
 
 const simplifyUrl = (url) => {
@@ -51,12 +53,14 @@ $(".addButton").on("click", () => {
     url: url,
   });
   render();
+  window.onbeforeunload = () => {
+    const string = JSON.stringify(hasMap); //把hasMap变成字符串
+    console.log(string)
+    localStorage.setItem("x", string); //设置一个x，把string存起来
+  };
 });
 
-window.onbeforeunload = () => {
-  const string = JSON.stringify(hasMap); //把hasMap变成字符串
-  localStorage.setItem("x", string); //设置一个x，把string存起来
-};
+
 // $(document).on('keypress',(e) => {
 //     const {key} = e     //等于 const key = e.key
 //     for(let i = 0;i<hasMap.length;i++){
